@@ -17,9 +17,8 @@ if token:
     sp = spotipy.Spotify(auth=token)
     while True:
         results = sp.currently_playing()
-        f = open("playing.txt","w+")
+        f = open("playing.txt","w+", encoding='utf-8')
         contents = str(f.read())
-        # print(json.dumps(results, indent=2, sort_keys=True))
         if results == 'None':
             if contents != "":
                 f.write("")
