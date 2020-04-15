@@ -2,6 +2,7 @@ import sys
 import spotipy
 import spotipy.util as util
 import time
+import json
 
 scope = 'user-read-private user-read-currently-playing'
 
@@ -11,32 +12,33 @@ else:
     print("Usage: %s username" % (sys.argv[0],))
     sys.exit()
 
-token = util.prompt_for_user_token(username, scope)
+while True:
+    sp_oauth = spotipy.SpotifyOAuth(scope=scope,username=username)
 
-if token:
-    sp = spotipy.Spotify(auth=token)
-    while True:
-        results = sp.currently_playing()
-        f = open("playing.txt","w+", encoding='utf-8')
-        contents = str(f.read())
-        if results == 'None':
-            if contents != "":
-                f.write("")
-                f.close()
+    if sp_oauth:
+        sp = spotipy.Spotify(oauth_manager=sp_oauth)
+        for i in range (0, 359):
+            results = sp.currently_playing()
+            playing_file = open("playing.txt","w+", encoding='utf-8')
+            contents = str(playing_file.read())
+            if results == None or results['item'] == None:
+                if contents != "":
+                    playing_file.write("")
+                    playing_file.close()
+                else:
+                    playing_file.close()
             else:
-                f.close()
-        else:
-            artists = []
-            for artist in results['item']['artists']:
-                artists.append(artist['name'])
-            title = str(results['item']['name'])
-            artist_list = ", ".join(artists)
-            playing = artist_list + " - " + title
-            if contents != playing:
-                f.write(playing)
-                f.close()
-            else:
-                f.close()
-        time.sleep(5)
-else:
-    print("Can't get token for ", username)
+                artists = []
+                for artist in results['item']['artists']:
+                    artists.append(artist['name'])
+                title = str(results['item']['name'])
+                artist_list = ", ".join(artists)
+                playing = artist_list + " - " + title
+                if contents != playing:
+                    playing_file.write(playing)
+                    playing_file.close()
+                else:
+                    playing_file.close()
+            time.sleep(5)
+    else:
+        print("Can't get token for ", username)
