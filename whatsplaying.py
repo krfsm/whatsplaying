@@ -1,8 +1,8 @@
-import sys
+import json
 import spotipy
 import spotipy.util as util
+import sys
 import time
-import json
 
 scope = 'user-read-private user-read-currently-playing'
 
