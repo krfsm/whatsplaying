@@ -10,5 +10,11 @@ The `whatsplaying.env` file should contain your Spotify Client ID and Secret,
 and a callback URI (which can be basically any valid URI, but remember that if
 you use one controlled by someone else, they can get your tokens).
 
+Added `obs-whatsplaying.py`, which talks to [OBS
+Websocket](https://github.com/Palakis/obs-websocket) through
+[OBS-websocket-py](https://github.com/Elektordi/obs-websocket-py/). Make sure
+to have a good password on your OBS Websocket server if it's open to connections
+from anywhere else!
+
 To run the script (using bash, in my case):
 `source whatsplaying.env && python whatsplaying.py username`
