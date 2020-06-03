@@ -25,9 +25,10 @@ while True:
         client.connect()
         for i in range (0, 359):
             results = sp.currently_playing()
-            if results == None or results['item'] == None:
+            if results == None or results['item'] == None or results['is_playing'] == False:
                 if playing_now != "":
                     playing_now = ""
+                    client.call(requests.SetTextGDIPlusProperties('WhatsPlaying', text=playing_now))
                     print(playing_now, flush=True)
             else:
                 artists = []

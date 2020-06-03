@@ -21,10 +21,12 @@ while True:
             results = sp.currently_playing()
             playing_file = open("playing.txt","w+", encoding='utf-8')
             contents = str(playing_file.read())
-            if results == None or results['item'] == None:
+            if results == None or results['item'] == None or results['is_playing'] == False:
                 if contents != "":
+                    contents = ""
                     playing_file.write("")
                     playing_file.close()
+                    print(contents, flush=True)
                 else:
                     playing_file.close()
             else:
@@ -37,6 +39,7 @@ while True:
                 if contents != playing:
                     playing_file.write(playing)
                     playing_file.close()
+                    print(playing, flush=True)
                 else:
                     playing_file.close()
             time.sleep(5)
