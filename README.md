@@ -17,4 +17,9 @@ to have a good password on your OBS Websocket server if it's open to connections
 from anywhere else!
 
 To run the script (using bash, in my case):
-`source whatsplaying.env && python whatsplaying.py username`
+*   for writing to a file: `source whatsplaying.env && python whatsplaying.py
+    username`
+*   for sending data directly to OBS: `source whatsplaying.env && python
+    obs-whatsplaying.py username`
+
+TODO: looking at adding support for vMix.
