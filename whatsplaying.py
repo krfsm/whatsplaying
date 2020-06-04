@@ -26,7 +26,7 @@ while True:
                     contents = ""
                     playing_file.write("")
                     playing_file.close()
-                    print(contents, flush=True)
+                    print("Paused or nothing's playing on Spotify.", flush=True)
                 else:
                     playing_file.close()
             else:

@@ -29,7 +29,7 @@ while True:
                 if playing_now != "":
                     playing_now = ""
                     client.call(requests.SetTextGDIPlusProperties('WhatsPlaying', text=playing_now))
-                    print(playing_now, flush=True)
+                    print("Paused or nothing's playing on Spotify.", flush=True)
             else:
                 artists = []
                 for artist in results['item']['artists']:
