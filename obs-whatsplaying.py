@@ -1,6 +1,6 @@
 import json
 import spotipy
-import spotipy.util as util
+import spotipy.oauth2 as oauth2
 import sys
 import time
 
